@@ -26,6 +26,7 @@ function configure(conf) {
             "embed": false // Whether or not this folder's contents will be embedded into the final executable
         }
     ];
+    conf.exportDir = "export"; // The directory/folder which your game will export to
 }
 ```
 
