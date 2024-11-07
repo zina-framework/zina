@@ -1,0 +1,21 @@
+{
+    "name": "zina.hx",
+    "url" : "https://github.com/zina-framework/zina.hx",
+    "license": "MIT",
+    "tags": ["haxe", "zina", "2d", "game", "framework", "engine", "hxcpp", "cpp"],
+    "description": "Zina is a small 2D game framework designed to have a simple, yet flexible API. Think of LÖVE (https://love2d.org/), but built in a Haxe environment!",
+    "version": "0.1.0",
+    "classPath": "src/",
+    "releasenote": "The initial release of zina.hx. Please report issues/bugs over on Github!",
+    "contributors": ["swordcube"],
+    "dependencies": {
+        "hxcpp": "",
+        "hxsdl": "",
+        "hxstb_image": "",
+        "hxglad": "",
+        "hxdr_mp3": "",
+        "hxdr_wav": "",
+        "hxstb_vorbis": "",
+        "hxal": ""
+    }
+}
