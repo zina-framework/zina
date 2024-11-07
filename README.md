@@ -1,4 +1,4 @@
-# <img src="misc/logo.png" alt="zina.hx logo" width="24" /> zina.hx
+# <img src="https://raw.githubusercontent.com/zina-framework/.github/refs/heads/main/profile/zina_no_bg_shadowless.png" alt="zina.hx logo" width="24" /> zina.hx
 Zina is a small 2D game framework designed to have a simple, yet flexible API.
 
 Think of [LÖVE](https://love2d.org/), but built in a Haxe environment!
