@@ -6,6 +6,40 @@ Think of [LÖVE](https://love2d.org/), but built in a Haxe environment!
 > [!IMPORTANT]
 > Zina requires Haxe 4.3+ to compile, it will likely not work on anything below.
 
+## 💡 Getting Started
+
+In order to start using Zina, start by installing the haxelib:
+
+### ⚡ Development Installation
+This will install the very latest, potentially unstable version of Zina.
+
+```sh
+haxelib git zina https://github.com/zina-framework/zina
+```
+On Linux, you will need to run some commands for Zina to run correctly.
+
+The commands depend on your distro, and if it isn't on this list here,
+let me know so i can add more! In the meanwhile, try looking them up.
+
+Here is a list of each command needed:
+
+### 🐌 Debian/Ubuntu
+```sh
+sudo apt install g++
+sudo apt install libsdl2-dev -y
+sudo apt install libopengl-dev -y
+sudo apt install libopenal-dev -y
+```
+
+### ⚡ Arch Linux
+
+```sh
+sudo pacman -S gcc
+sudo pacman -S sdl2
+sudo pacman -S mesa
+sudo pacman -S openal
+```
+
 ## ⚙️ Configuration
 Configuring a Zina project is pretty simple, all you need
 to do is make a conf.hx file in your project root!
@@ -28,6 +62,18 @@ function configure(conf) {
     ];
     conf.exportDir = "export"; // The directory/folder which your game will export to
 }
+```
+
+## 🧪 Testing/Exporting
+If you want to test your game, this is all you need to run:
+```sh
+haxelib run zina test -debug
+```
+
+That's it! That's all there is to testing your game.
+If you want to export your game, you run a very similar command:
+```sh
+haxelib run zina export
 ```
 
 ## 🖥 Platforms
