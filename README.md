@@ -54,13 +54,40 @@ function configure(conf) {
     conf.vsync = false; // Whether or not V-Sync will be enabled (overrides `targetFPS`)
 
     conf.sourceDir = "src"; // The directory/folder which your game's code resides in
+    conf.mainClass = "Main"; // The name of the main class that your game will start on
+    
     conf.assetFolders = [ // A list of several folders your game may use to hold assets
         {
-            "name": "assets", // The name of a folder to pull assets from
-            "embed": false // Whether or not this folder's contents will be embedded into the final executable
+            name: "assets", // The name of a folder to pull assets from
+            embed: false // Whether or not this folder's contents will be embedded into the final executable
+        }
+    ];
+    conf.defines = [ // Defines to use when exporting/testing the project
+        // Debugging Defines
+        {
+            name: "MY_DEBUG_DEFINE",
+            value: "1"
+        },
+        // General Game Defines
+        {
+            name: "MY_GAME_DEFINE",
+            value: "1"
+        },
+        // Ordering is important! If we try to check
+        // for MY_DEBUG_DEFINE before it was defined,
+        // it won't work!
+        {
+            name: "MY_RELEASE_DEFINE",
+            value: "1",
+            doIf: "MY_GAME_DEFINE",
+            doUnless: "MY_DEBUG_DEFINE"
         }
     ];
     conf.exportDir = "export"; // The directory/folder which your game will export to
+
+    conf.graphics = true; // Allows graphics-related functionality in the game
+    conf.audio = true; // Allows audio-related functionality in the game
+    conf.timer = true; // Allows time-related functionality in the game
 }
 ```
 
