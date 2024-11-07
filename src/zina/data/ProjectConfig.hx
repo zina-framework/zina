@@ -1,38 +1,55 @@
 package zina.data;
 
-@:structInit
-class ProjectConfig {
-    public var width:Int;
-    public var height:Int;
+typedef ProjectConfig = {
+    var targetFPS:Int;
+    var vsync:Bool;
 
-    public var targetFPS:Int;
-    public var vsync:Bool;
-
-    public var sourceDir:String;
-    public var mainClass:String;
+    var sourceDir:String;
+    var mainClass:String;
     
-    public var assetFolders:Array<String>;
-    public var defines:Array<ProjectDefine>;
+    var assetFolders:Array<ProjectAssetFolder>;
 
-    public var exportDir:String;
+    var libraries:Array<ProjectLibrary>;
+    var defines:Array<ProjectDefine>;
 
-    public var event:Bool;
-    public var window:WindowConfig;
-    public var graphics:Bool;
-    public var audio:Bool;
-    public var timer:Bool;
+    var exportAs32Bit:Bool;
+    var exportDir:String;
+
+    var isDebugBuild:Bool;
+    var ?executableName:String;
+
+    var event:Bool;
+    var window:WindowConfig;
+    var graphics:Bool;
+    var audio:Bool;
+    var timer:Bool;
 } 
+
+typedef ProjectAssetFolder = {
+    var name:String;
+    var ?embed:Bool;
+}
 
 typedef ProjectDefine = {
     var name:String;
     var value:String;
 
-    var doIf:String;
-    var doUnless:String;
+    var ?doIf:String;
+    var ?doUnless:String;
+}
+
+typedef ProjectLibrary = {
+    var name:String;
+    var ?version:String;
 }
 
 typedef WindowConfig = {
     var title:String;
+    var icon:String;
+
+    var width:Int;
+    var height:Int;
+
     var resizable:Bool;
     var borderless:Bool;
 }

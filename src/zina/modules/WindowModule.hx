@@ -1,5 +1,7 @@
 package zina.modules;
 
+import cpp.ConstCharStar;
+
 import sdl.SDL;
 import sdl.Types;
 
@@ -24,11 +26,12 @@ class WindowModule {
 		if (conf.borderless)
 			wFlags |= BORDERLESS;
 
-        _window = SDL.createWindow(conf.title, SDLWindowPos.CENTERED, SDLWindowPos.CENTERED, conf.width, conf.height, SDLWindowInitFlags.OPENGL);
+        final wTitle:ConstCharStar = ConstCharStar.fromString(cast conf.title);
+        _window = SDL.createWindow(wTitle, SDLWindowPos.CENTERED, SDLWindowPos.CENTERED, conf.width, conf.height, wFlags);
         _context = SDL.glCreateContext(_window);
 
         SDL.glMakeCurrent(_window, _context);
-        SDL.glSetSwapInterval((conf.vsync) ? 1 : 0);
+        SDL.glSetSwapInterval((Zina.config.vsync) ? 1 : 0);
 
         Glad.loadGLLoader(untyped __cpp__("SDL_GL_GetProcAddress"));
     }
@@ -39,4 +42,8 @@ class WindowModule {
 
     private var _window:SDLWindow;
     private var _context:SDLGlContext;
+
+    private function _onResize(width:Int, height:Int):Void {
+        Glad.viewport(0, 0, width, height);
+    }
 }

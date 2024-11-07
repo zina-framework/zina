@@ -5,6 +5,8 @@ import sdl.Types;
 
 import glad.Glad;
 
+using StringTools;
+
 /**
  * The module responsible for controlling graphics related things.
  */
@@ -44,7 +46,10 @@ class GraphicsModule {
      * 
      * @param  color  The new background color. (defaults to black)
      */
-    public function setBackgroundColor(color:Color = Color.BLACK):Void {
+    public function setBackgroundColor(?color:Color):Void {
+		if(color == null)
+			color = Color.BLACK;
+
         _bgColor.copyFrom(color);
         Glad.clearColor(color.r, color.g, color.b, color.a);
     }
@@ -207,22 +212,22 @@ abstract Color(Array<Float>) from Array<Float> to Array<Float> {
     /**
      * The red component of the color.
      */
-    public var r(get, never):Float;
+    public var r(get, set):Float;
 
     /**
      * The green component of the color.
      */
-    public var g(get, never):Float;
+    public var g(get, set):Float;
 
     /**
      * The blue component of the color.
      */ 
-    public var b(get, never):Float;
+    public var b(get, set):Float;
 
     /**
      * The alpha component of the color.
      */
-    public var a(get, never):Float;
+    public var a(get, set):Float;
 
     public function new(r:Float = 0, g:Float = 0, b:Float = 0, a:Float = 0) {
         this = [r, g, b, a];
@@ -239,10 +244,10 @@ abstract Color(Array<Float>) from Array<Float> to Array<Float> {
     @:from
 	public static inline function fromInt(color:Int):Color {
         final newColor:Color = new Color();
-        newColor.r = ((integer >> 16) & 0xff) / 255;
-		newColor.g = ((integer >> 8) & 0xff) / 255;
-		newColor.b = ((integer) & 0xff) / 255;
-		newColor.a = ((integer >> 24) & 0xff) / 255;
+        newColor.r = ((color >> 16) & 0xff) / 255;
+		newColor.g = ((color >> 8) & 0xff) / 255;
+		newColor.b = ((color) & 0xff) / 255;
+		newColor.a = ((color >> 24) & 0xff) / 255;
 		return newColor;
 	}
 
@@ -287,4 +292,24 @@ abstract Color(Array<Float>) from Array<Float> to Array<Float> {
     private inline function get_a():Float {
         return this[3];
     }
+
+	@:noCompletion
+	private inline function set_r(r:Float):Float {
+		return this[0] = r;
+	}
+
+	@:noCompletion
+	private inline function set_g(g:Float):Float {
+		return this[1] = g;
+	}
+
+	@:noCompletion
+	private inline function set_b(b:Float):Float {
+		return this[2] = b;
+	}
+
+	@:noCompletion
+	private inline function set_a(a:Float):Float {
+		return this[3] = a;
+	}
 }

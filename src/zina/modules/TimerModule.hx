@@ -19,7 +19,7 @@ class TimerModule {
      * @return The time passed. (in seconds)
      */
     public function step():Float {
-        final now:Float = HaxeTimer.getTimer();
+        final now:Float = HaxeTimer.stamp();
         _dt = (now - _last);
         _last = now;
         return _dt;
@@ -41,10 +41,10 @@ class TimerModule {
      * @param  time  Time to sleep for. (in seconds)
      */
     public function sleep(time:Float):Void {
-        final now:Float = HaxeTimer.getTimer();
+        final now:Float = HaxeTimer.stamp();
         Sys.sleep(time);
         #if windows
-        while(HaxeTimer.getTimer() - now < time) {
+        while(HaxeTimer.stamp() - now < time) {
             // Busy wait the rest of this because
             // Windows' sleep function is very inaccurate
         }

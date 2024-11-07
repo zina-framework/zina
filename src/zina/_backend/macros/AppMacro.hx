@@ -23,6 +23,7 @@ import hscript.Expr as HScriptExpr;
 #if macro
 using haxe.macro.PositionTools;
 #end
+using StringTools;
 
 @:keep
 class AppMacro {
@@ -37,7 +38,56 @@ class AppMacro {
 		final sourcePath:String = Path.normalize(Sys.getCwd());
 		final cfgPath:String = Path.normalize(Path.join([sourcePath, "conf.hx"]));
         
-        final cfg:ProjectConfig = ProjectMacro.getConfig(cfgPath);
+        if (!FileSystem.exists(cfgPath))
+			Context.fatalError('Couldn\'t find a valid "conf.hx" file! ' + cfgPath, Context.currentPos());
+
+		final sysArgs:Array<String> = Sys.args().copy();
+		final cfgScript:String = File.getContent(cfgPath).replace("\r", "");
+
+		final parser:HScriptParser = new HScriptParser();
+		final cfgScript:HScriptExpr = parser.parseString(File.getContent(cfgPath), cfgPath);
+
+		final interp:HScriptInterp = new HScriptInterp();
+		interp.execute(cfgScript);
+
+		final func:ProjectConfig->Void = interp.variables.get("configure");
+		if (func == null)
+			Context.fatalError('Couldn\'t find a "configure" function in conf.hx!', pos);
+
+		final cfg:ProjectConfig = {
+			targetFPS: 0,
+			vsync: false,
+
+			sourceDir: "src",
+			mainClass: "Main",
+
+			assetFolders: [], // TODO: make these actually work
+
+			libraries: [],
+			defines: [],
+
+			exportAs32Bit: false,
+			exportDir: "export",
+
+			isDebugBuild: #if debug true #else sysArgs != null && (sysArgs.contains("-debug") || sysArgs.contains("--debug")) #end,
+			executableName: null,
+
+            event: true,
+            window: {
+				title: "zina.hx",
+				icon: null,
+
+                width: 640,
+                height: 480,
+
+                resizable: true,
+                borderless: false
+            },
+			graphics: true,
+			audio: true,
+			timer: true
+		};
+		func(cfg);
         
         // The actual macro
         var mainExpr = macro {
