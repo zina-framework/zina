@@ -154,7 +154,7 @@ class Zina {
 
             if(capDt == 0 || drawTimer >= capDt) {
                 if(graphics != null) {
-                    // TODO: graphics.origin
+                    graphics.origin();
                     graphics.clear(graphics.getBackgroundColor());
                     
                     if(draw != null)
