@@ -11,9 +11,8 @@ import stb.Image as StbImage;
 class ImageData extends Object {
     public var raw:RawPointer<UChar>;
 
-    public function new(?raw:RawPointer<UChar>) {
+    public function new() {
         super();
-        this.raw = raw;
     }
 
     public function getWidth():Int {

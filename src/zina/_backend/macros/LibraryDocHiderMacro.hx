@@ -9,10 +9,12 @@ import haxe.macro.Context;
 @:keep
 class LibraryDocHiderMacro {
 	public static macro function build():Array<Field> {
-		final fields:Array<Field> = Context.getBuildFields().copy();
-		for(field in fields) {
-			trace(field.name);
-		}
+		final fields:Array<Field> = Context.getBuildFields();
+		
+		// TODO: this stuff, will hide all internal libraries from the user
+		// to prevent them from accidentally importing them instead of
+		// a Zina class of a similar name
+
 		return fields;
 	}
 }
