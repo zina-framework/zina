@@ -1,5 +1,6 @@
 package zina.math;
 
+import cpp.Pointer;
 import haxe.ds.Vector;
 
 // TODO: clean this code up holy shit
@@ -36,6 +37,18 @@ abstract Matrix4x4(Vector<Float>) from Vector<Float> to Vector<Float> {
     @:op([])
     public function set(i:Int, val:Float):Float {
         return this[i] = val;
+    }
+
+    @:to
+    public function toPointer():Pointer<Matrix4x4> {
+        return Pointer.ofArray(cast this);
+    }
+
+    public function copyFrom(mat:Matrix4x4):Matrix4x4 {
+        for(i in 0...this.length) {
+            this[i] = mat[i];
+        }
+        return this;
     }
     
     /**

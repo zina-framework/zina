@@ -69,6 +69,7 @@ class ProjectMacro {
                 resizable: true,
                 borderless: false
             },
+			image: true,
 			graphics: true,
 			audio: true,
 			timer: true
@@ -127,6 +128,7 @@ class ProjectMacro {
                 resizable: true,
                 borderless: false
             },
+			image: true,
 			graphics: true,
 			audio: true,
 			timer: true

@@ -1,4 +1,4 @@
-package zina.data;
+package zina.modules.graphics;
 
 import zina.utils.Color;
 

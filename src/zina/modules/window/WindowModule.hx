@@ -1,4 +1,4 @@
-package zina.modules;
+package zina.modules.window;
 
 import cpp.ConstCharStar;
 

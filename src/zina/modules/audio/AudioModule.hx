@@ -1,4 +1,4 @@
-package zina.modules;
+package zina.modules.audio;
 
 /**
  * The module responsible for controlling audio-related things.

@@ -1,4 +1,4 @@
-package zina.modules;
+package zina.modules.timer;
 
 import haxe.Timer as HaxeTimer;
 

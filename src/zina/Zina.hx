@@ -9,7 +9,12 @@ import cpp.vm.Gc;
 import zina._backend.macros.ProjectMacro;
 
 import zina.modules.*;
-import zina.modules.EventModule;
+import zina.modules.audio.*;
+import zina.modules.event.*;
+import zina.modules.image.*;
+import zina.modules.graphics.*;
+import zina.modules.timer.*;
+import zina.modules.window.*;
 #end
 import zina.data.ProjectConfig;
 
@@ -41,6 +46,11 @@ class Zina {
      */
     public static var window(default, null):WindowModule;
 
+    /**
+     * Direct access to the `image` module of Zina.
+     */
+    public static var image(default, null):ImageModule;
+    
     /**
      * Direct access to the `graphics` module of Zina.
      */
@@ -202,6 +212,9 @@ class Zina {
         if(config.event)
             Zina.event = new EventModule();
         
+        if(config.image)
+            Zina.image = new ImageModule();
+
         if(config.graphics)
             Zina.graphics = new GraphicsModule();
         

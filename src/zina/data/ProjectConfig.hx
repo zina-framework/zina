@@ -20,6 +20,7 @@ typedef ProjectConfig = {
 
     var event:Bool;
     var window:WindowConfig;
+    var image:Bool;
     var graphics:Bool;
     var audio:Bool;
     var timer:Bool;

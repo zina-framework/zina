@@ -1,4 +1,5 @@
 --define analyzer-optimize
 --define SDL_PREFIX
 
+--macro zina._backend.macros.LibraryDocHiderMacro.build()
 --macro zina._backend.macros.OSDefineMacro.build()
